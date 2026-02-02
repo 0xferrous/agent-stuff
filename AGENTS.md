@@ -1,0 +1,2 @@
+- Always keep the readme up to date as code changes are made
+- Keep the readme concise and to point
