@@ -41,3 +41,43 @@ export default function (pi: ExtensionAPI) {
   });
 }
 ```
+
+# Skills
+
+| Skill | Description |
+|-------|-------------|
+| [`rust-crate-locator`](skills/rust-crate-locator) | Locate source code directory of Rust dependencies from the cargo registry cache |
+
+## Usage
+
+Skills are loaded automatically by pi when placed in `~/.pi/agent/skills/` or referenced by path.
+
+```bash
+# Copy skill to pi's skills directory
+cp -r ./skills/rust-crate-locator ~/.pi/agent/skills/
+
+# Or reference by path (pi loads SKILL.md)
+pi --skill ./skills/rust-crate-locator/SKILL.md
+```
+
+## Skill Template
+
+Skills are defined in `SKILL.md` files with frontmatter metadata:
+
+```markdown
+---
+name: skill-name
+description: Brief description of when to use this skill
+---
+
+# Skill Title
+
+Detailed documentation of the skill's purpose and usage.
+```
+
+# Themes
+
+| Theme | Description |
+|-------|-------------|
+| [`gruvbox-dark.json`](themes/gruvbox-dark.json) | Classic Gruvbox dark theme with warm earthy colors |
+| [`gruvbox-material-dark-hard.json`](themes/gruvbox-material-dark-hard.json) | Gruvbox Material dark hard variant with improved contrast |
