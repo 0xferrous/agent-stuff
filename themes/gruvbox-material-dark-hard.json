@@ -1,0 +1,103 @@
+{
+	"$schema": "https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/theme-schema.json",
+	"name": "gruvbox-material-dark-hard",
+	"vars": {
+		"bg0": "#1d2021",
+		"bg1": "#282828",
+		"bg2": "#32302f",
+		"bg3": "#3c3836",
+		"bg4": "#504945",
+		"bg5": "#665c54",
+
+		"fg0": "#d4be98",
+		"fg1": "#ddc7a1",
+		"fg2": "#e6d5ae",
+
+		"grey0": "#7c6f64",
+		"grey1": "#928374",
+		"grey2": "#a89984",
+
+		"red": "#fb4934",
+		"orange": "#fe8019",
+		"yellow": "#fabd2f",
+		"green": "#b8bb26",
+		"aqua": "#8ec07c",
+		"blue": "#83a598",
+		"purple": "#d3869b",
+
+		"bg_red": "#402120",
+		"bg_green": "#34381b",
+		"bg_yellow": "#3d3a22",
+
+		"selectedBg": "#32302f",
+		"userMsgBg": "#282828",
+		"customMsgBg": "#32302f",
+		"toolPendingBg": "#1d2021",
+		"toolSuccessBg": "#273315",
+		"toolErrorBg": "#3e2322"
+	},
+	"colors": {
+		"accent": "aqua",
+		"border": "blue",
+		"borderAccent": "aqua",
+		"borderMuted": "bg4",
+		"success": "green",
+		"error": "red",
+		"warning": "yellow",
+		"muted": "grey1",
+		"dim": "grey0",
+		"text": "",
+		"thinkingText": "grey1",
+
+		"selectedBg": "selectedBg",
+		"userMessageBg": "userMsgBg",
+		"userMessageText": "",
+		"customMessageBg": "customMsgBg",
+		"customMessageText": "",
+		"customMessageLabel": "purple",
+		"toolPendingBg": "toolPendingBg",
+		"toolSuccessBg": "toolSuccessBg",
+		"toolErrorBg": "toolErrorBg",
+		"toolTitle": "fg1",
+		"toolOutput": "grey1",
+
+		"mdHeading": "orange",
+		"mdLink": "blue",
+		"mdLinkUrl": "grey0",
+		"mdCode": "aqua",
+		"mdCodeBlock": "green",
+		"mdCodeBlockBorder": "grey0",
+		"mdQuote": "grey1",
+		"mdQuoteBorder": "bg4",
+		"mdHr": "bg4",
+		"mdListBullet": "aqua",
+
+		"toolDiffAdded": "green",
+		"toolDiffRemoved": "red",
+		"toolDiffContext": "grey1",
+
+		"syntaxComment": "grey1",
+		"syntaxKeyword": "red",
+		"syntaxFunction": "green",
+		"syntaxVariable": "blue",
+		"syntaxString": "green",
+		"syntaxNumber": "purple",
+		"syntaxType": "yellow",
+		"syntaxOperator": "orange",
+		"syntaxPunctuation": "fg1",
+
+		"thinkingOff": "bg4",
+		"thinkingMinimal": "bg5",
+		"thinkingLow": "#45707a",
+		"thinkingMedium": "blue",
+		"thinkingHigh": "purple",
+		"thinkingXhigh": "#d3869b",
+
+		"bashMode": "green"
+	},
+	"export": {
+		"pageBg": "#1d2021",
+		"cardBg": "#282828",
+		"infoBg": "#32302f"
+	}
+}
