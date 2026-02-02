@@ -19,6 +19,17 @@ pi -e ./extensions/turn-timer.ts -e ./extensions/notify.ts
 cp ./extensions/<name>.ts ~/.pi/agent/extensions/
 ```
 
+Or add to `~/.pi/agent/settings.json`:
+
+```json
+{
+  "extensions": [
+    "/path/to/repo/extensions/turn-timer.ts",
+    "/path/to/repo/extensions/notify.ts"
+  ]
+}
+```
+
 ## Template
 
 ```ts
