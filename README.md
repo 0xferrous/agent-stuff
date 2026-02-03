@@ -3,6 +3,7 @@
 | Extension | Description |
 |-----------|-------------|
 | [`bash-permission-gate.ts`](extensions/bash-permission-gate.ts) | Ask for confirmation before executing bash commands |
+| [`block-sensitive-reads.ts`](extensions/block-sensitive-reads.ts) | Intercepts read tool calls and rejects access to sensitive files like .env, .envrc, etc. |
 | [`notify.ts`](extensions/notify.ts) | Desktop notifications when agent finishes (Ghostty, iTerm2, WezTerm, Kitty) |
 | [`turn-timer.ts`](extensions/turn-timer.ts) | Show live turn and session timing in status bar |
 

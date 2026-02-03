@@ -1,2 +1,4 @@
 - Always keep the readme up to date as code changes are made
 - Keep the readme concise and to point
+- New extensions must be written in this repo at `./extensions/`
+- New skills must be written in this repo at `./skills/`
