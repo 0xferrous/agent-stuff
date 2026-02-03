@@ -3,7 +3,7 @@
 | Extension | Description |
 |-----------|-------------|
 | [`bash-permission-gate.ts`](extensions/bash-permission-gate.ts) | Ask for confirmation before executing bash commands |
-| [`block-sensitive-files.ts`](extensions/block-sensitive-files.ts) | Intercepts read, write, and edit tool calls and rejects access to sensitive files like .env, .envrc, etc. |
+| [`block-sensitive-files.ts`](extensions/block-sensitive-files.ts) | Blocks access to sensitive files (.env, .envrc, etc.) and redacts sensitive env vars from tool results and bash outputs |
 | [`notify.ts`](extensions/notify.ts) | Desktop notifications when agent finishes (Ghostty, iTerm2, WezTerm, Kitty) |
 | [`turn-timer.ts`](extensions/turn-timer.ts) | Show live turn and session timing in status bar |
 
