@@ -29,6 +29,13 @@ nix-search-tv print --indexes nixos
 nix-search-tv print --indexes nixpkgs,home-manager
 ```
 
+**Use cached data without refetching**:
+```bash
+nix-search-tv print --offline --indexes nixpkgs
+```
+
+The `--offline` flag disables fetching new indexes, using only cached data. This is faster and avoids unnecessary network calls when you have up-to-date indexes.
+
 **Search through packages**:
 ```bash
 $ nix-search-tv print --indexes nixpkgs | grep -i firefox
@@ -51,6 +58,13 @@ Use `preview` to get detailed information about a package or option:
 nix-search-tv preview --indexes nixpkgs firefox
 nix-search-tv preview --indexes nixos boot.loader.systemd-boot.enable
 ```
+
+**Get JSON output** (useful for programmatic parsing):
+```bash
+nix-search-tv preview --indexes nixpkgs --json firefox
+```
+
+The `--json` option outputs raw package data as JSON with the package key included as the `_key` field. This is ideal for agent automation and script parsing.
 
 **Example output**:
 ```
@@ -83,6 +97,11 @@ $ nix-search-tv source --indexes nixpkgs firefox
 https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/networking/browsers/firefox/wrapper.nix
 ```
 
+**With offline mode**:
+```bash
+nix-search-tv source --offline --indexes nixpkgs firefox
+```
+
 ### 4. Get Homepage
 
 Use `homepage` to get the package's homepage URL:
@@ -92,11 +111,46 @@ $ nix-search-tv homepage --indexes nixpkgs firefox
 http://www.mozilla.com/en-US/firefox/
 ```
 
+**With offline mode**:
+```bash
+nix-search-tv homepage --offline --indexes nixpkgs firefox
+```
+
 ## Tips
 
 - First run downloads and indexes data; subsequent runs use cached data.
 - When using multiple indexes, package names are prefixed (e.g., `nixpkgs/ firefox`).
 - Set `NO_COLOR=1` to disable ANSI colored output from preview command.
+- Use `--offline` flag when you don't need to update indexes (faster, no network).
+- Use `--json` flag with `preview` for programmatic/agent-friendly output.
+
+## Agent Usage Patterns
+
+### Efficient package lookup with offline mode:
+
+```bash
+# Get package details quickly using cached data
+nix-search-tv preview --offline --indexes nixpkgs --json firefox | jq -r '.description'
+```
+
+### Search and get source in one pipeline:
+
+```bash
+PACKAGE=$(nix-search-tv print --offline --indexes nixpkgs | grep -i "neovim" | head -1)
+nix-search-tv source --offline --indexes nixpkgs "$PACKAGE"
+```
+
+### Get structured package data for automation:
+
+```bash
+nix-search-tv preview --indexes nixpkgs --json ripgrep | jq '{
+  name,
+  version,
+  description,
+  homepage,
+  license
+}'
+```
 
 ## Troubleshooting
 
