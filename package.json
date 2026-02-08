@@ -14,5 +14,10 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit *.ts"
+  },
+  "pi": {
+   "extensions": ["extensions", "extensions/vendored"],
+   "skills": ["skills"],
+   "themes": ["themes"]
   }
 }
