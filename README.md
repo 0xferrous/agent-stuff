@@ -4,6 +4,7 @@
 |-----------|-------------|
 | [`bash-permission-gate.ts`](extensions/bash-permission-gate.ts) | Ask for confirmation before executing bash commands |
 | [`block-sensitive-files.ts`](extensions/block-sensitive-files.ts) | Blocks access to sensitive files (.env, .envrc, etc.) and redacts sensitive env vars from tool results and bash outputs |
+| [`file-change-tracker.ts`](extensions/file-change-tracker.ts) | Captures and summarizes all write and edit tool calls after each agent turn |
 | [`notify.ts`](extensions/notify.ts) | Desktop notifications when agent finishes (Ghostty, iTerm2, WezTerm, Kitty) |
 | [`turn-timer.ts`](extensions/turn-timer.ts) | Show live turn and session timing in status bar |
 | [`followup.ts`](extensions/followup.ts) | Adds a /followup command to queue repeated follow-up user messages |
