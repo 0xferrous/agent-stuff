@@ -52,6 +52,7 @@ export default function (pi: ExtensionAPI) {
 | [`nix-search`](skills/nix-search) | Search and query NixOS packages and options using nix-search-tv |
 | [`rust-crate-locator`](skills/rust-crate-locator) | Locate source code directory of Rust dependencies from the cargo registry cache |
 | [`gitbook-scraper`](skills/gitbook-scraper) | Scrape GitBook documentation sites into Markdown files |
+| [`diataxis-documentation-framework`](skills/diataxis-documentation-framework) | Apply Diátaxis to audit, write, and restructure documentation by user need |
 
 ## Usage
 
