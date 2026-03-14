@@ -5,19 +5,29 @@
   "type": "module",
   "private": true,
   "dependencies": {
+    "@mariozechner/pi-ai": "*",
     "@mariozechner/pi-coding-agent": "*",
-    "@mariozechner/pi-ai": "*"
+    "just-bash": "^2.13.0"
   },
   "devDependencies": {
     "@types/node": "^25.2.0",
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit *.ts"
+    "typecheck": "tsc --noEmit *.ts",
+    "test": "node --test --experimental-strip-types tests/**/*.test.ts",
+    "test:bash-sane": "node --test --experimental-strip-types tests/bash-sane.test.ts"
   },
   "pi": {
-   "extensions": ["extensions", "extensions/vendored"],
-   "skills": ["skills"],
-   "themes": ["themes"]
+    "extensions": [
+      "extensions",
+      "extensions/vendored"
+    ],
+    "skills": [
+      "skills"
+    ],
+    "themes": [
+      "themes"
+    ]
   }
 }
