@@ -18,7 +18,9 @@ export default function (pi: ExtensionAPI) {
 		}
 
 		const command = event.input.command as string;
-		const cwd = event.input.cwd as string | undefined;
+		const cwd = "cwd" in event.input && typeof event.input.cwd === "string"
+			? event.input.cwd
+			: undefined;
 
 		// Build confirmation message
 		let message = `Execute bash command?`;

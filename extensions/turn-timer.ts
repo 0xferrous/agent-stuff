@@ -101,7 +101,7 @@ export default function (pi: ExtensionAPI) {
 
     // Display aggregate timing via notify (ephemeral, not sent to LLM)
     if (ctx.hasUI) {
-      ctx.ui.notify(`Total time: ${duration}`, "success");
+      ctx.ui.notify(`Total time: ${duration}`, "info");
       ctx.ui.setWidget("turn-timer", undefined);
     }
 
