@@ -10,6 +10,8 @@
 | [`idle-inhibit.ts`](extensions/idle-inhibit.ts) | Holds a systemd idle inhibitor while the agent is running (requires `systemd-inhibit`) |
 | [`turn-timer.ts`](extensions/turn-timer.ts) | Show live turn and session timing in status bar |
 | [`followup.ts`](extensions/followup.ts) | Adds a /followup command to queue repeated follow-up user messages |
+| [`vendored/read-mode.ts`](extensions/vendored/read-mode.ts) | Fullscreen read mode that scrolls conversation history with a pinned follow-up input (upstream: `minghinmatthewlam/pi-read-mode`) |
+| [`vendored/tps.ts`](extensions/vendored/tps.ts) | Shows tokens-per-second performance metrics at end of agent run (upstream: `badlogic/pi-mono`) |
 
 ## Usage
 
@@ -26,7 +28,13 @@ pi -e ./extensions/turn-timer.ts -e ./extensions/notify.ts
 # Auto-load (copy to ~/.pi/agent/extensions/)
 cp ./extensions/<name>.ts ~/.pi/agent/extensions/
 cp -r ./extensions/bash-sane ~/.pi/agent/extensions/
+cp ./extensions/vendored/read-mode.ts ~/.pi/agent/extensions/
+cp ./extensions/vendored/tps.ts ~/.pi/agent/extensions/
 ```
+
+`vendored/read-mode.ts` upstream: <https://github.com/minghinmatthewlam/pi-read-mode>
+
+`vendored/tps.ts` upstream: <https://github.com/badlogic/pi-mono/blob/main/.pi/extensions/tps.ts>
 
 Or add to `~/.pi/agent/settings.json`:
 
