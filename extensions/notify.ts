@@ -33,8 +33,24 @@ function notify(title: string, body: string): void {
   }
 }
 
+function formatCwd(cwd: string): string {
+  const home = process.env.HOME ?? "";
+  const devDir = `${home}/dev`;
+
+  if (cwd.startsWith(devDir)) {
+    return cwd.slice(devDir.length + 1) || "."; // +1 for trailing slash
+  }
+
+  if (cwd.startsWith(home)) {
+    return "~" + cwd.slice(home.length);
+  }
+
+  return cwd;
+}
+
 export default function (pi: ExtensionAPI) {
   pi.on("agent_end", async () => {
-    notify("Pi", "Ready for input");
+    const cwd = formatCwd(process.cwd());
+    notify(`Pi · ${cwd}`, "Ready for input");
   });
 }
