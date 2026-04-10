@@ -19,7 +19,7 @@ export default function (pi: ExtensionAPI) {
   // Track file operations for the current agent turn
   let capturedChanges: CapturedChange[] = [];
 
-  // Reset at the start of each agent turn
+  // Reset at the start of each agent run
   pi.on("agent_start", async (_event, ctx) => {
     capturedChanges = [];
   });
@@ -56,6 +56,9 @@ export default function (pi: ExtensionAPI) {
     if (capturedChanges.length === 0) {
       return; // No file activity to report
     }
+
+    // Defer sending the summary to ensure it renders after agent_end completes
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     // Group by path and count operations
     const byPath = new Map<string, { read: number; write: number; edit: number }>();
@@ -104,11 +107,14 @@ export default function (pi: ExtensionAPI) {
       }
     }
 
-    // Send as a custom message (non-blocking)
+    // Send as a custom message
     pi.sendMessage({
       customType: "agent-summary",
       content: summary,
       display: true,
     });
+
+    // Reset for next run
+    capturedChanges = [];
   });
 }
