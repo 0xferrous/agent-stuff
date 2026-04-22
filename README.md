@@ -3,6 +3,7 @@
 | Extension | Description |
 |-----------|-------------|
 | [`bash-sane`](extensions/bash-sane/) | Parsed bash approval gate with one-time, session, and persistent directory-scoped policies |
+| [`codex-web-search`](extensions/codex-web-search/) | Enables Codex web search by patching provider payloads for Codex models |
 | [`bash-permission-gate.ts`](extensions/bash-permission-gate.ts) | Simple confirmation prompt before executing bash commands |
 | [`block-sensitive-files.ts`](extensions/block-sensitive-files.ts) | Blocks access to sensitive files (.env, .envrc, etc.) and redacts sensitive env vars from tool results and bash outputs |
 | [`agent-summary.ts`](extensions/agent-summary.ts) | Shows an Agent Summary of consulted (read) and changed (write/edit) files after each turn |
@@ -21,6 +22,7 @@ pi -e ./extensions/<name>.ts
 
 # Directory extension
 pi -e ./extensions/bash-sane
+pi -e ./extensions/codex-web-search
 
 # Multiple extensions
 pi -e ./extensions/turn-timer.ts -e ./extensions/notify.ts
@@ -28,6 +30,7 @@ pi -e ./extensions/turn-timer.ts -e ./extensions/notify.ts
 # Auto-load (copy to ~/.pi/agent/extensions/)
 cp ./extensions/<name>.ts ~/.pi/agent/extensions/
 cp -r ./extensions/bash-sane ~/.pi/agent/extensions/
+cp -r ./extensions/codex-web-search ~/.pi/agent/extensions/
 cp ./extensions/vendored/read-mode.ts ~/.pi/agent/extensions/
 cp ./extensions/vendored/tps.ts ~/.pi/agent/extensions/
 ```
@@ -48,6 +51,8 @@ Or add to `~/.pi/agent/settings.json`:
 ```
 
 `bash-sane` stores persistent rules in `~/.pi/agent/pi-bash-sane.policy.json`. If you install `extensions/bash-sane/` standalone, run `npm install` in that directory first. See `extensions/bash-sane/SPEC.md` for behavior and policy details.
+
+`codex-web-search` keeps state in memory only. Use `/codex-web-search` for the native picker UI or `/codex-web-search [off|cached|live]` to set it directly. Default mode is `cached`.
 
 ## Template
 

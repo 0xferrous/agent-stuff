@@ -21,7 +21,8 @@
   "pi": {
     "extensions": [
       "extensions",
-      "extensions/vendored"
+      "extensions/vendored",
+      "extensions/codex-web-search"
     ],
     "skills": [
       "skills"

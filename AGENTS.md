@@ -2,5 +2,6 @@
 - Keep the readme concise and to point
 - New extensions must be written in this repo at `./extensions/`
 - New skills must be written in this repo at `./skills/`
+- When adding directory extensions, add the explicit folder path to `package.json` under `pi.extensions`, and when enabling them in `~/.pi/agent/settings.json` package filters, use the concrete entry file path (usually `.../index.ts`), not just the directory name
 - I prefer nushell for scripts
 - prefer `nix-shell` as shebang with explicit dependency declaration
