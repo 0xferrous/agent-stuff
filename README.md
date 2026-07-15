@@ -66,6 +66,14 @@ export default function (pi: ExtensionAPI) {
 }
 ```
 
+# Prompts
+
+| Prompt | Description |
+|--------|-------------|
+| [`slice-diff`](prompts/slice-diff.md) | Slice the current diff into atomic commit-sized staged changes, one slice at a time |
+
+Invoke prompt templates in pi with `/slice-diff`.
+
 # Skills
 
 | Skill | Description |
