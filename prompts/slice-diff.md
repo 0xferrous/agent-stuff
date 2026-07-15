@@ -16,3 +16,4 @@ Rules:
 - Do not commit unless explicitly asked.
 - Keep unrelated, generated, lockfile, and format-only changes separate unless inseparable.
 - Ask before staging if the boundary is ambiguous.
+- If suggesting a commit body, wrap it to about 80 characters per line (120 max).
