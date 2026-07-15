@@ -8,13 +8,41 @@ interface CapturedChange {
   timestamp: number;
 }
 
+interface AgentSummaryEntryData {
+  content: string;
+}
+
+type EntryRendererAPI = ExtensionAPI & {
+  registerEntryRenderer<T>(
+    customType: string,
+    renderer: (entry: { data?: T }, options: { expanded: boolean }, theme: any) => Text,
+  ): void;
+};
+
 export default function (pi: ExtensionAPI) {
-  // Register custom message renderer for pretty display
-  pi.registerMessageRenderer("agent-summary", (message, options, theme) => {
+  const renderSummary = (content: string, theme: any) => {
     let text = theme.fg("accent", theme.bold("🤖 Agent Summary\n\n"));
-    text += message.content;
+    text += content;
     return new Text(text, 0, 0);
-  });
+  };
+
+  // Keep the message renderer for summaries already stored by older versions.
+  pi.registerMessageRenderer("agent-summary", (message, _options, theme) =>
+    renderSummary(String(message.content), theme),
+  );
+
+  // Custom entries render in the transcript but never participate in LLM context.
+  (pi as EntryRendererAPI).registerEntryRenderer<AgentSummaryEntryData>(
+    "agent-summary",
+    (entry, _options, theme) => renderSummary(entry.data?.content ?? "", theme),
+  );
+
+  // Prevent summaries stored by older versions as custom messages from reaching the LLM.
+  pi.on("context", async (event) => ({
+    messages: event.messages.filter(
+      (message) => !(message.role === "custom" && message.customType === "agent-summary"),
+    ),
+  }));
 
   // Track file operations for the current agent turn
   let capturedChanges: CapturedChange[] = [];
@@ -107,12 +135,8 @@ export default function (pi: ExtensionAPI) {
       }
     }
 
-    // Send as a custom message
-    pi.sendMessage({
-      customType: "agent-summary",
-      content: summary,
-      display: true,
-    });
+    // Append a durable TUI-only entry instead of an LLM-visible custom message.
+    pi.appendEntry<AgentSummaryEntryData>("agent-summary", { content: summary });
 
     // Reset for next run
     capturedChanges = [];

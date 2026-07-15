@@ -6,7 +6,7 @@
 | [`codex-web-search`](extensions/codex-web-search/) | Enables Codex web search by patching provider payloads for Codex models |
 | [`bash-permission-gate.ts`](extensions/bash-permission-gate.ts) | Simple confirmation prompt before executing bash commands |
 | [`block-sensitive-files.ts`](extensions/block-sensitive-files.ts) | Blocks access to sensitive files (.env, .envrc, etc.) and redacts sensitive env vars from tool results and bash outputs |
-| [`agent-summary.ts`](extensions/agent-summary.ts) | Shows an Agent Summary of consulted (read) and changed (write/edit) files after each turn |
+| [`agent-summary.ts`](extensions/agent-summary.ts) | Shows a TUI-only summary of consulted (read) and changed (write/edit) files after each turn without adding it to LLM context |
 | [`notify.ts`](extensions/notify.ts) | Desktop notifications when agent finishes (Ghostty, iTerm2, WezTerm, Kitty) |
 | [`idle-inhibit.ts`](extensions/idle-inhibit.ts) | Holds a systemd idle inhibitor while the agent is running (requires `systemd-inhibit`) |
 | [`turn-timer.ts`](extensions/turn-timer.ts) | Show live turn and session timing in status bar |
