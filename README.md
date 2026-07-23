@@ -16,6 +16,8 @@
 
 ## Usage
 
+Requires Pi extension API **0.81.1+** (`@earendil-works/*` packages).
+
 ```bash
 # Single file extension
 pi -e ./extensions/<name>.ts
@@ -57,7 +59,7 @@ Or add to `~/.pi/agent/settings.json`:
 ## Template
 
 ```ts
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 export default function (pi: ExtensionAPI) {
   pi.on("event_name", async (event, ctx) => {

@@ -19,8 +19,8 @@
  * If providers is not specified, all providers will be shown.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { visibleWidth } from "@mariozechner/pi-tui";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { visibleWidth } from "@earendil-works/pi-tui";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as os from "node:os";
@@ -535,22 +535,10 @@ async function loadAntigravityAuth(
 ): Promise<AntigravityAuth | undefined> {
   // Prefer model registry auth storage first (may auto-refresh).
   try {
-    const accessToken = await Promise.resolve(
-      modelRegistry?.authStorage?.getApiKey?.("google-antigravity"),
-    );
-    const raw = await Promise.resolve(
-      modelRegistry?.authStorage?.get?.("google-antigravity"),
-    );
-
-    const projectId =
-      typeof raw?.projectId === "string" ? raw.projectId : undefined;
-    const refreshToken =
-      typeof raw?.refresh === "string" ? raw.refresh : undefined;
-    const expiresAt =
-      typeof raw?.expires === "number" ? raw.expires : undefined;
+    const accessToken = await modelRegistry?.getApiKeyForProvider?.("google-antigravity");
 
     if (typeof accessToken === "string" && accessToken.length > 0) {
-      return { accessToken, projectId, refreshToken, expiresAt };
+      return { accessToken };
     }
   } catch {}
 
@@ -573,10 +561,9 @@ async function refreshAntigravityAccessToken(
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 5000);
 
-    // From the reference snippet in CodexBar issue #129.
-    const clientId =
-      "1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com";
-    const clientSecret = "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";
+    const clientId = process.env.ANTIGRAVITY_OAUTH_CLIENT_ID;
+    const clientSecret = process.env.ANTIGRAVITY_OAUTH_CLIENT_SECRET;
+    if (!clientId || !clientSecret) return null;
 
     const res = await fetch("https://oauth2.googleapis.com/token", {
       method: "POST",
@@ -786,13 +773,7 @@ async function fetchCodexUsage(modelRegistry: any): Promise<UsageSnapshot> {
 
   try {
     // Try openai-codex provider first (pi's built-in)
-    accessToken = await modelRegistry?.authStorage?.getApiKey?.("openai-codex");
-
-    // Get account ID if available from OAuth credentials
-    const cred = modelRegistry?.authStorage?.get?.("openai-codex");
-    if (cred?.type === "oauth") {
-      accountId = (cred as any).accountId;
-    }
+    accessToken = await modelRegistry?.getApiKeyForProvider?.("openai-codex");
   } catch {}
 
   // Fallback to ~/.codex/auth.json if not in pi's auth
@@ -1429,7 +1410,7 @@ export default function (pi: ExtensionAPI) {
 
       const modelRegistry = ctx.modelRegistry;
       await ctx.ui.custom((tui, theme, _kb, done) => {
-        return new UsageComponent(tui, theme, () => done(), modelRegistry);
+        return new UsageComponent(tui, theme, () => done(undefined), modelRegistry);
       });
     },
   });

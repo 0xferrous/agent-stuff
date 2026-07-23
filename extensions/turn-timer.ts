@@ -5,8 +5,8 @@
  * and appends the final timing to the transcript when the turn ends.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
 
 export default function (pi: ExtensionAPI) {
   let turnStartTime: number | null = null;
@@ -108,7 +108,7 @@ export default function (pi: ExtensionAPI) {
     agentStartTime = null;
   });
 
-  pi.on("session_switch", async (_event, ctx) => {
+  pi.on("session_shutdown", async (_event, ctx) => {
     clearTimer();
     turnStartTime = null;
     agentStartTime = null;
@@ -116,9 +116,5 @@ export default function (pi: ExtensionAPI) {
       ctx.ui.setStatus("turn-timer", undefined);
       ctx.ui.setWidget("turn-timer", undefined);
     }
-  });
-
-  pi.on("session_shutdown", async () => {
-    clearTimer();
   });
 }

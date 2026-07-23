@@ -12,6 +12,6 @@
     "types": ["node"],
     "noEmit": true
   },
-  "include": ["*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["extensions/**/*.ts"],
+  "exclude": ["node_modules", "extensions/**/node_modules"]
 }

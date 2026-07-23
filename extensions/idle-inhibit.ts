@@ -11,7 +11,7 @@
 import { spawn, type ChildProcess } from "node:child_process";
 import { existsSync } from "node:fs";
 import { delimiter } from "node:path";
-import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 
 const STATUS_ID = "idle-inhibit";
 const WHY = "pi agent is running";
@@ -167,11 +167,6 @@ export default function (pi: ExtensionAPI) {
     } else {
       setStatus(ctx, inhibitor !== null);
     }
-  });
-
-  pi.on("session_switch", async (_event, ctx) => {
-    activeAgents = 0;
-    stopInhibitor(ctx);
   });
 
   pi.on("session_shutdown", async (_event, ctx) => {

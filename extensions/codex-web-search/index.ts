@@ -1,4 +1,4 @@
-import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import {
 	applyMode,
 	DEFAULT_STATE,
@@ -27,8 +27,7 @@ export default function (pi: ExtensionAPI) {
 		if (!state.enabled) return;
 		if (!ctx.model || !isCodexModel(ctx.model)) return;
 
-		const codexCredential = ctx.modelRegistry.authStorage.get("openai-codex");
-		if (!codexCredential || codexCredential.type !== "oauth") return;
+		if (!ctx.modelRegistry.isUsingOAuth(ctx.model)) return;
 
 		const codexApiKey = await ctx.modelRegistry.getApiKeyForProvider("openai-codex");
 		if (!codexApiKey) return;

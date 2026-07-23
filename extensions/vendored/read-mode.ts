@@ -17,7 +17,7 @@
  * producing the exact same ANSI-styled lines pi normally displays.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import {
 	type Component,
 	CURSOR_MARKER,
@@ -25,7 +25,7 @@ import {
 	matchesKey,
 	truncateToWidth,
 	visibleWidth,
-} from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-tui";
 
 interface ReadModeResult {
 	text: string;

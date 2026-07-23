@@ -10,7 +10,7 @@
  * Not supported: Terminal.app, Windows Terminal, Alacritty
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 /**
  * Detect if running in Kitty terminal.

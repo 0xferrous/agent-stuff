@@ -1,4 +1,4 @@
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const usage = "Usage: /followup <n-repetitions> <message>";
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
